@@ -1,6 +1,6 @@
 const http = require('http')//importando do node para criar o servidor
 const fs = require('fs'); // manipula arquivos
-
+const read = require()
 const hostname = "127.0.0.1"; // localhost
 
 const port = "3000"; // define a porta que o servidor vai rodar
