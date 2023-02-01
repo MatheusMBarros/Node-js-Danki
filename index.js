@@ -1,20 +1,27 @@
-const http = require('http')//importando do node
-const fs = require('fs')
+const http = require('http')//importando do node para criar o servidor
+const fs = require('fs'); // manipula arquivos
 
 const hostname = "127.0.0.1"; // localhost
 
 const port = "3000"; // define a porta que o servidor vai rodar
 
 
-// const server = http.createServer((require, response) => { // Criando o servidor
 
-//     response.statusCode = 200; // status code correto
-//     response.setHeader('Content-Type', 'text/plain');
+//Cria novo arquivo
+fs.writeFileSync('Barros.txt', 'Teste Barros', (err) => {
+    if (err) throw err;
+    console.log('O arquivo foi lido com sucesso')
+})
 
-//     response.end("Hello Barros");//
+//Cria novo arquivo ou insete o conteúdo depois do que ja existe
+fs.appendFile('Barros.txt', "\noutro conteudo" , (err) => {
+    if(err) throw err
+    console.log('Conteudo adicionado')
+})
 
-// })
 
+
+//Cria servidor
 const server = http.createServer((require, response) => {
 
     if (require.url == '/barros') {
@@ -31,6 +38,40 @@ const server = http.createServer((require, response) => {
 
 })
 
+
+//lendo arquivos
+// fs.readFile('index.html', (err, data) => {
+//     if (err) throw err
+//     console.log(data.toString())
+
+// })
+
+// lendo e splitando o arquivo
+// fs.readFile('Barros.txt', (err, data) => {
+//     if (err) throw err
+
+//     let str = data.toString()
+
+//     let newStr = str.substring(0,3)
+
+//     console.log(newStr)
+
+// })
+
+
+
+// informa a porta e o hostname que o servidor vai ouvir e retorna um callback
 server.listen(port, hostname, () => {
     console.log("Servidor está rodando");
-})// informa a porta e o hostname que o servidor vai ouvir e retorna um callback
+})
+
+
+//deleta
+// fs.unlink('Barros.txt', (err) => {
+//     console.log('deletado')
+// })
+
+//rename
+fs.rename('Barros.txt', 'Renomeado.html', function (err) {
+    console.log('Renomeado')
+})
